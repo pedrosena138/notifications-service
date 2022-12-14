@@ -1,6 +1,8 @@
 import { IsNotEmpty, IsUUID, Length } from 'class-validator';
-import { MIN_CONTENT_LENGTH } from 'src/utils/constants';
-import { MAX_CONTENT_LENGTH } from '../../../utils/constants';
+import {
+  MIN_CONTENT_LENGTH,
+  MAX_CONTENT_LENGTH,
+} from '../../../utils/constants';
 
 export class CreateNotificationBody {
   @IsNotEmpty()
