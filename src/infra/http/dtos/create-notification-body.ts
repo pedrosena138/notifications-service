@@ -7,12 +7,12 @@ import {
 export class CreateNotificationBody {
   @IsNotEmpty()
   @IsUUID()
-  recipientId!: string;
+  recipientId: string;
 
   @IsNotEmpty()
   @Length(MIN_CONTENT_LENGTH, MAX_CONTENT_LENGTH)
-  content!: string;
+  content: string;
 
   @IsNotEmpty()
-  category!: string;
+  category: string;
 }
