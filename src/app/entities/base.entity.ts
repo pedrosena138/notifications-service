@@ -3,8 +3,8 @@ import { randomUUID } from 'node:crypto';
 export class BaseEntity {
   private _id: string;
 
-  constructor() {
-    this._id = randomUUID();
+  constructor(id?: string) {
+    this._id = id ?? randomUUID();
   }
 
   public get id(): string {

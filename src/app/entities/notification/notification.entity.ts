@@ -14,8 +14,11 @@ export interface NotificationProps {
 export class Notification extends BaseEntity {
   private props: NotificationProps;
 
-  constructor(props: Replace<NotificationProps, { createdAt?: Date }>) {
-    super();
+  constructor(
+    props: Replace<NotificationProps, { createdAt?: Date }>,
+    id?: string,
+  ) {
+    super(id);
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
