@@ -15,11 +15,10 @@ export class InMemoryNotificationRepository implements NotificationRepository {
     return notification;
   }
 
-  async countManyByRecipientId(recipientId: string): Promise<number> {
-    const count = this.notifications.filter(
-      (item) => item.recipientId === recipientId,
-    ).length;
-    return count;
+  async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+    return this.notifications.filter(
+      (notification) => notification.recipientId === recipientId,
+    );
   }
 
   async create(notification: Notification) {
@@ -34,5 +33,12 @@ export class InMemoryNotificationRepository implements NotificationRepository {
     if (notificationIndex >= 0) {
       this.notifications[notificationIndex] = notification;
     }
+  }
+
+  async countManyByRecipientId(recipientId: string): Promise<number> {
+    const count = this.notifications.filter(
+      (notification) => notification.recipientId === recipientId,
+    ).length;
+    return count;
   }
 }
