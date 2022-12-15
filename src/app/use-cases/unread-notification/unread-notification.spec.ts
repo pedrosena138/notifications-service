@@ -1,8 +1,8 @@
 import { randomUUID } from 'node:crypto';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notification.repository';
-import { NotificationNotFound } from '@app/errors/notification-not-found';
 import { makeNotification } from '@test/factories/notification-factory';
 import { UnreadNotification } from './unread-notification';
+import { NotFoundException } from '@nestjs/common';
 
 describe('Unread notification use case', () => {
   const makeSUT = () => {
@@ -33,6 +33,6 @@ describe('Unread notification use case', () => {
         notificationId: randomUUID(),
       });
     };
-    expect(result).rejects.toThrowError(NotificationNotFound);
+    expect(result).rejects.toThrowError(NotFoundException);
   });
 });

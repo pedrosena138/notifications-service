@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Patch, Param } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Param,
+  BadRequestException,
+} from '@nestjs/common';
 import { SendNotificationBody } from '../dtos/send-notification-body';
 import { SendNotification } from '@app/use-cases/send-notification/send-notification';
 import { HttpNotificationMapper } from '../mappers/http-notification.mapper';
@@ -21,6 +29,10 @@ export class NotificationsController {
 
   @Get('recipient/:recipientId')
   async findManyByRecipientId(@Param('recipientId') recipientId: string) {
+    if (!recipientId) {
+      throw new BadRequestException('Param recipientId is required');
+    }
+
     const { notifications } = await this.getRecipientNotifications.execute({
       recipientId,
     });
@@ -43,21 +55,34 @@ export class NotificationsController {
 
   @Patch(':id/cancel')
   async cancel(@Param('id') id: string) {
+    if (!id) {
+      throw new BadRequestException('Param id is required');
+    }
     await this.cancelNotification.execute({ notificationId: id });
   }
 
   @Patch(':id/read')
   async read(@Param('id') id: string) {
-    await this.cancelNotification.execute({ notificationId: id });
+    if (!id) {
+      throw new BadRequestException('Param id is required');
+    }
+    await this.readNotification.execute({ notificationId: id });
   }
 
   @Patch(':id/unread')
   async unread(@Param('id') id: string) {
-    await this.cancelNotification.execute({ notificationId: id });
+    if (!id) {
+      throw new BadRequestException('Param id is required');
+    }
+    await this.unreadNotification.execute({ notificationId: id });
   }
 
   @Get('recipient/:recipientId/count')
   async countByRecipientId(@Param('recipientId') recipientId: string) {
+    if (!recipientId) {
+      throw new BadRequestException('Param recipientId is required');
+    }
+
     const { count } = await this.countRecipientNotifications.execute({
       recipientId,
     });
