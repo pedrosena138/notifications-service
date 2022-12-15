@@ -1,7 +1,4 @@
-import {
-  MIN_CONTENT_LENGTH,
-  MAX_CONTENT_LENGTH,
-} from '../../../utils/constants';
+import { MIN_CONTENT_LENGTH, MAX_CONTENT_LENGTH } from '@utils/constants';
 
 export class Content {
   private readonly content: string;

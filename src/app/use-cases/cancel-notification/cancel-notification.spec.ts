@@ -1,9 +1,8 @@
 import { CancelNotification } from './cancel-notification';
 import { randomUUID } from 'node:crypto';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notification.repository';
-import { Notification } from '@app/entities/notification/notification.entity';
-import { Content } from '@app/entities/notification/content';
 import { NotificationNotFound } from '@app/errors/notification-not-found';
+import { makeNotification } from '@test/factories/notification-factory';
 
 describe('Cancel notification use case', () => {
   const makeSUT = () => {
@@ -16,11 +15,7 @@ describe('Cancel notification use case', () => {
   it('should be able to cancel a notification', async () => {
     const { sut, notificationRepository } = makeSUT();
 
-    const notification = new Notification({
-      recipientId: randomUUID(),
-      content: new Content('notificação teste'),
-      category: 'social',
-    });
+    const notification = makeNotification();
 
     await notificationRepository.create(notification);
     await sut.execute({

@@ -1,6 +1,6 @@
 import { SendNotification } from './send-notification';
 import { randomUUID } from 'node:crypto';
-import { InMemoryNotificationRepository } from '../../../../test/repositories/in-memory-notification.repository';
+import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notification.repository';
 
 describe('Send notification use case', () => {
   const makeSUT = () => {

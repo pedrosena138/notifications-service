@@ -2,7 +2,7 @@ import { Replace } from '@utils/replace-type';
 import { BaseEntity } from '../base.entity';
 import { Content } from './content';
 
-interface NotificationProps {
+export interface NotificationProps {
   recipientId: string;
   content: Content;
   category: string;

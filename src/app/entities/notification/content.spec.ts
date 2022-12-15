@@ -1,7 +1,4 @@
-import {
-  MAX_CONTENT_LENGTH,
-  MIN_CONTENT_LENGTH,
-} from '../../../utils/constants';
+import { MAX_CONTENT_LENGTH, MIN_CONTENT_LENGTH } from '@utils/constants';
 import { Content } from './content';
 
 describe('Notification content value object', () => {
