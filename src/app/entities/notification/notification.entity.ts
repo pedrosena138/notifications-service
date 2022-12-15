@@ -1,4 +1,4 @@
-import { Replace } from 'src/utils/replace-type';
+import { Replace } from '@utils/replace-type';
 import { BaseEntity } from '../base.entity';
 import { Content } from './content';
 
@@ -7,6 +7,7 @@ interface NotificationProps {
   content: Content;
   category: string;
   readAt?: Date | null;
+  canceledAt?: Date | null;
   createdAt: Date;
 }
 
@@ -42,14 +43,22 @@ export class Notification extends BaseEntity {
     return this.props.category;
   }
 
-  public set readAt(readAt: Date | null | undefined) {
-    this.props.readAt = readAt;
-  }
   public get readAt(): Date | null | undefined {
     return this.props.readAt;
   }
 
+  public get canceledAt(): Date | null | undefined {
+    return this.props.canceledAt;
+  }
+
   public get createdAt(): Date {
     return this.props.createdAt;
+  }
+
+  public read() {
+    this.props.readAt = new Date();
+  }
+  public cancel() {
+    this.props.canceledAt = new Date();
   }
 }
